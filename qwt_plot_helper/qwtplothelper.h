@@ -62,6 +62,11 @@ public:
      */
     bool removeCurve(const QString& curveID);
 
+    /**
+     * @brief Removes all the curves from the plot
+     */
+    void removeAllCurves(void);
+
 private: // Methods
     /**
      * @brief Finds the first curve with the given ID and returns it if it exists

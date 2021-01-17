@@ -97,6 +97,17 @@ bool QwtPlotHelper::removeCurve(const QString& curveID)
     return(success);
 } /* QwtPlotHelper::removeCurve */
 
+
+void QwtPlotHelper::removeAllCurves(void)
+{
+    QList<QwtPlotItem *> curveList = itemList(QwtPlotItem::Rtti_PlotCurve);
+    while( curveList.size() > 0 )
+    {
+        QwtPlotItem* curve = curveList.takeFirst();
+        delete curve;
+    }
+} /* QwtPlotHelper::removeAllCurves */
+
 /* =================== Public Slots Definition ============================= */
 
 /* =================== Private Class Methods Definition ==================== */
