@@ -10,17 +10,27 @@ CONFIG += c++11
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-# You can also make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+# Add qwt path to the project (this will change depending on your build)
+QWT_PATH = C:\Qt5\5.12.6\qwt-6.1.4
+INCLUDEPATH += $${QWT_PATH}/src
+LIBPATH += $${QWT_PATH}/lib
+
+CONFIG(debug, debug|release) { # If debug..
+    #DESTDIR = debug
+    LIBS += -lqwtd
+} else { # If Release..
+    #DESTDIR = release
+    LIBS += -lqwt
+}
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    qwtplothelper.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    qwtplothelper.h
 
 FORMS += \
     mainwindow.ui
